@@ -12,10 +12,7 @@ int main()
 {
 	Game game;
 
-	while (!game.getIsGameOver())
-	{
-		game.handleInput();
-	}
+	game.run();
 
     return 0;
 }

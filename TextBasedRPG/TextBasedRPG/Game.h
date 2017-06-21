@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "Player.h"
+#include "Location.h"
+#include "DataHandler.h"
 
 using namespace std;
 
@@ -13,13 +15,17 @@ public:
 	Game();
 	~Game();
 
-	void handleInput();
-
+	void init();
+	void handleInput(string nextMove);
+	void run();
 	bool getIsGameOver() const;
 
 private:
-	string nextMove;
-	bool isGameOver = false;
-	Player player;
+	string _nextMove;
+	bool _isGameOver = false;
+	string _directions[4];
+	DataHandler _handler;
+	Location _currentLocation;
+	Player _player;
 };
 
