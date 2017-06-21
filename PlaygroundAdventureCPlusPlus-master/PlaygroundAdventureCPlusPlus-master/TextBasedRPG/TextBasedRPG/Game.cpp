@@ -12,8 +12,8 @@ Game::Game()
 	_handler;
 	_currentLocation;
 	_wares;
-	_wares.push_back(Item("Charm of Capitalism"));
-	_wares.push_back(Item("Talisman of Truth"));
+	_wares.push_back(Item("Charm of Capitalism", "buy charm", 20, 0));
+	_wares.push_back(Item("Talisman of Truth", "buy talisman", 100, 1));
 	_player;
 
 	_currentLocation = _handler.getLocation(0);
@@ -46,6 +46,11 @@ void Game::moveTo(int id)
 {
 	_currentLocation = _handler.getLocation(id);
 	cout << _currentLocation.getDescription() << endl;
+
+	if (_currentLocation.getID() == 4)
+	{
+		finishGame();
+	}
 }
 
 void Game::handleInput(string nextMove)
@@ -59,8 +64,6 @@ void Game::handleInput(string nextMove)
 	{
 		cout << _currentLocation.getName() << endl;
 	}
-
-	cout << _currentLocation.getID() << endl;
 
 	if (_currentLocation.getID() == 0)
 	{
@@ -88,7 +91,7 @@ void Game::handleInput(string nextMove)
 	{
 		checkWares();
 	}
-	else if (_currentLocation.getID() == 2 && nextMove == "buy charm")
+	else if (_currentLocation.getID() == 2 && (nextMove == "buy charm" || nextMove == "buy talisman"))
 	{
 		buyWare(nextMove);
 	}
@@ -116,24 +119,65 @@ void Game::killMonster()
 	int awardedGold = (random() % 10) + 1;
 
 	_player.takeDamage(damageTaken);
-	_player.increaseGold(awardedGold);
 
-	cout << "You kill the monster without mercy. Mercilessly!" << endl;
-	cout << "You take " << damageTaken << " damage. You receive " << awardedGold << " gold." << endl;
+	if (_player.getHP() > 0)
+	{
+		_player.increaseGold(awardedGold);
+		cout << "You kill the monster without mercy. Mercilessly!" << endl;
+		cout << "You take " << damageTaken << " damage. You receive " << awardedGold << " gold." << endl;
+	}
+	else
+	{
+		cout << "The monster slams you over the head with a pink squid" << endl;
+		cout << "You fall to the ground. You were killed by a squid. Great!" << endl;
+		gameOver(false);
+	}
 }
 
 void Game::checkWares()
 {
 	cout << "The shopkeeper has the following items in stock:" << endl;
-	cout << "-Charm of Capitalism (20 gold)" << endl;
-	cout << "-Talisman of Truth (100 gold)" << endl;
+
+	for (int i = 0; i < _wares.size(); i++)
+	{
+		cout << _wares.at(i).getName() << endl;
+	}
 }
 
 void Game::buyWare(string nextMove)
 {
-	if (nextMove == "buy charm")
+	for (int i = 0; i < _wares.size(); i++)
 	{
-		_player.addItem(Item("Charm of Capitalism"));
-		_wares.erase(_wares.begin());
+		if (_wares.at(i).getBuyCommand() == nextMove)
+		{
+			_player.addItem(_wares.at(i));
+		}
 	}
+}
+
+void Game::finishGame()
+{
+	bool isWinner = false;
+
+	for (int i = 0; i < _player.getItems().size(); i++)
+	{
+		if (_player.getItems().at(i).getID() == 1)
+		{
+			isWinner = true;
+		}
+	}
+	gameOver(isWinner);
+}
+
+void Game::gameOver(bool isWinner)
+{
+	string gameOverText;
+	if (isWinner) gameOverText = "You are victorious!";
+	else gameOverText = "You failed!";
+
+	cout << gameOverText << endl;
+	cout << "-----Game Over....." << endl;
+	int wait;
+	cin >> wait;
+	_isGameOver = true;
 }

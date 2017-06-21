@@ -15,7 +15,7 @@ public:
 
 	const int &getHP() const;
 	const int &getGold() const;
-	const vector<Item> *getItems() const;
+	vector<Item> getItems();
 
 	void viewStatus() const;
 	void addItem(const Item &item);

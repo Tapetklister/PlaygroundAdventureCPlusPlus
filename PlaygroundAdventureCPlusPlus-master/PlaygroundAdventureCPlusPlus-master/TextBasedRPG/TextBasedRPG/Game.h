@@ -33,5 +33,7 @@ private:
 	void killMonster();
 	void checkWares();
 	void buyWare(string nextMove);
+	void finishGame();
+	void gameOver(bool isWinner);
 };
 

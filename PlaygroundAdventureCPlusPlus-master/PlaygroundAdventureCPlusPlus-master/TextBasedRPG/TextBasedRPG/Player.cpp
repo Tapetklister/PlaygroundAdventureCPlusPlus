@@ -27,14 +27,25 @@ const int &Player::getGold() const
 	return _gold;
 }
 
-const vector<Item> *Player::getItems() const
+vector<Item> Player::getItems()
 {
-	return &_items;
+	return _items;
 }
 
 void Player::viewStatus() const
 {
 	cout << "HP: " << getHP() << " Gold: " << this->getGold() <<endl;
+	cout << _items.size() << endl;
+
+	string printString;
+
+	for (int i = 0; i < _items.size(); i++)
+	{
+		Item item;
+		//item = getItems().at(i);
+		printString = item.getName();
+		cout << &printString << endl;
+	}
 }
 
 void Player::addItem(const Item & item)
