@@ -18,6 +18,8 @@ public:
 
 	void viewStatus() const;
 	void addItem(const Item &item);
+	void takeDamage(int damageTaken);
+	void increaseGold(int goldAwarded);
 
 private:
 	int hp;

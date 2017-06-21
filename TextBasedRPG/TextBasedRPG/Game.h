@@ -27,5 +27,8 @@ private:
 	DataHandler _handler;
 	Location _currentLocation;
 	Player _player;
+
+	void moveTo(int id);
+	void killMonster();
 };
 

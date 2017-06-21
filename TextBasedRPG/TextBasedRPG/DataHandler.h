@@ -14,7 +14,8 @@ public:
 
 	const Location getLocation(const int id);
 
+	map <int, map<string, int>> _locDirections;
+
 private:
 	Location _locations[5];
-	map <int, map<string, int>> _locDirections;
 };

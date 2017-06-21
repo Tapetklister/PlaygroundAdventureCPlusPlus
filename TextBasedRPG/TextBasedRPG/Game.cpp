@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <string>
+#include <random>
 
 #include "Game.h"
 
@@ -12,12 +13,7 @@ Game::Game()
 	_currentLocation;
 	_player;
 
-	_currentLocation = _handler.getLocation(3);
-
-	_directions[0] = "east";
-	_directions[1] = "west";
-	_directions[2] = "north";
-	_directions[3] = "south";
+	_currentLocation = _handler.getLocation(0);
 }
 
 
@@ -38,6 +34,17 @@ void init()
 {
 }
 
+bool Game::getIsGameOver() const
+{
+	return this->_isGameOver;
+}
+
+void Game::moveTo(int id)
+{
+	_currentLocation = _handler.getLocation(id);
+	cout << _currentLocation.getDescription() << endl;
+}
+
 void Game::handleInput(string nextMove)
 {
 
@@ -49,9 +56,54 @@ void Game::handleInput(string nextMove)
 	{
 		cout << _currentLocation.getName() << endl;
 	}
+
+	cout << _currentLocation.getID() << endl;
+
+	if (_currentLocation.getID() == 0)
+	{
+		if (nextMove == "west")
+			moveTo(1);
+		if (nextMove == "east")
+			moveTo(2);
+		if (nextMove == "south")
+			moveTo(3);
+		if (nextMove == "north")
+			moveTo(4);
+	}
+	else if (_currentLocation.getID() == 1 && nextMove == "kill monster")
+	{
+		killMonster();
+	}
+	else if (_currentLocation.getID() == 1)
+	{
+		if (nextMove == "east")
+		{
+			moveTo(0);
+		}
+	}
+	else if (_currentLocation.getID() == 2)
+	{
+		if (nextMove == "west")
+		{
+			moveTo(0);
+		}
+	}
+	else if (_currentLocation.getID() == 3)
+	{
+		if (nextMove == "north")
+		{
+			moveTo(0);
+		}
+	}
+
 }
 
-bool Game::getIsGameOver() const
+void Game::killMonster()
 {
-	return this->_isGameOver;
+	random_device random;
+	int damageTaken = (random() % 20) + 1;
+	int awardedGold = (random() % 10) + 1;
+
+	_player.takeDamage(damageTaken);
+	_player.increaseGold(awardedGold);
 }

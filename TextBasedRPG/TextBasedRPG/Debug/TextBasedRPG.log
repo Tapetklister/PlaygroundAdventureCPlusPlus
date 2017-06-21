@@ -1,5 +1,11 @@
-﻿  Game.cpp
-c:\users\anton nilsson\documents\visual studio 2015\projects\textbasedrpg\textbasedrpg\player.h(25): warning C4200: nonstandard extension used: zero-sized array in struct/union
-  c:\users\anton nilsson\documents\visual studio 2015\projects\textbasedrpg\textbasedrpg\player.h(25): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+﻿  Player.cpp
+c:\users\anton nilsson\documents\visual studio 2015\projects\textbasedrpg\textbasedrpg\player.h(27): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\anton nilsson\documents\visual studio 2015\projects\textbasedrpg\textbasedrpg\player.h(27): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Game.cpp
+c:\users\anton nilsson\documents\visual studio 2015\projects\textbasedrpg\textbasedrpg\player.h(27): warning C4200: nonstandard extension used: zero-sized array in struct/union
+  c:\users\anton nilsson\documents\visual studio 2015\projects\textbasedrpg\textbasedrpg\player.h(27): note: This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  TextBasedRPG.cpp
   TextBasedRPG.vcxproj -> C:\Users\Anton Nilsson\documents\visual studio 2015\Projects\TextBasedRPG\Debug\TextBasedRPG.exe
   TextBasedRPG.vcxproj -> C:\Users\Anton Nilsson\documents\visual studio 2015\Projects\TextBasedRPG\Debug\TextBasedRPG.pdb (Full PDB)

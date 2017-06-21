@@ -14,6 +14,7 @@ public:
 
 	const string &getName() const;
 	const string &getDescription() const;
+	const int &getID() const;
 private:
 	string _name;
 	string _description;

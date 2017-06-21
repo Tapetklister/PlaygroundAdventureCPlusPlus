@@ -28,3 +28,8 @@ const string & Location::getDescription() const
 {
 	return _description;
 }
+
+const int & Location::getID() const
+{
+	return _id;
+}

@@ -39,3 +39,13 @@ void Player::viewStatus() const
 void Player::addItem(const Item & item)
 {
 }
+
+void Player::takeDamage(int damageTaken)
+{
+	hp -= damageTaken;
+}
+
+void Player::increaseGold(int goldAwarded)
+{
+	gold += goldAwarded;
+}
